@@ -80,8 +80,6 @@ position: fixed;
 }
 
 .picture{
-    display: block;
-    width: 60%;
     transform: scale(0.5);
      width: 320px; height: 320px;
     margin-left: auto;
