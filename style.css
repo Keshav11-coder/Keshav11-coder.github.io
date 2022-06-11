@@ -31,6 +31,12 @@ html { /*style basic html*/
 body{
 }
 
+.responsive {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
 .animate {
     height: 200px;
     width: 400px;
