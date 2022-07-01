@@ -98,8 +98,8 @@ function redrawUserList(){
         var CHATBUBBLE='<div class="codettesBootcamp2022"><h4 class="bootcamp2022name">';//</h4></div>
         if(item.userName == USER){
             //ulist+= item.userName + " <a href='#" + mqttTopic + "/'><i class='fa fa-fw fa-phone'></i></a></li><br>"
-            var apply = '<h4 class="styleY">' + item.userName + '</h4><br><button class="debug"onclick="openDebugDialog()"><img class="send-img" src="debug-icon.png"></button>';
-            document.getElementById("you").innerHTML+=apply;
+            /*var apply = '<h4 class="styleY">' + item.userName + '</h4><br><button class="debug"onclick="openDebugDialog()"><img class="send-img" src="debug-icon.png"></button>';
+            document.getElementById("you").innerHTML+=apply;*/
         }else{
             ulist+= CHATBUBBLE + item.userName + "<i class='fa fa-fw fa-phone'></i></a></li>"+ "</h4></div>" +"<br>"
         }//ulist+= CHATBUBBLE + item.userName +  "<a href='#" + mqttTopic + "/" + item.clientId +"'><i class='fa fa-fw fa-phone'></i></a></li>"+ "</h4></div>" +"<br>"
