@@ -26,6 +26,11 @@ class Car {
             );
         }
 
+        if (controlType == "KEYS") {
+            this.sensor = new Sensor(this);
+            this.maxSpeed = 5;
+        }
+
         this.controls = new Controls(controlType);
 
         //this.camera = new Cam();
@@ -48,6 +53,7 @@ class Car {
                 const offsets = this.sensor.readings.map(
                     s=>s==null?0:1-s.offset
                 );
+                //console.log(offsets)
                 const outputs=NeuralNetwork.feedForward(offsets, this.brain);
                 //console.log(outputs)
 
