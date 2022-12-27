@@ -1,0 +1,195 @@
+/****SCHEDULE AND MET INFORMATION DIALOGS****/
+
+.right-panel {
+    position: absolute;
+    height: 99%;
+    background-color: rgba(0, 0, 0, 0.688);
+    width: 68.5%;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    border-radius: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.rpwrapper {
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+}
+
+.meteorological-information {
+    position: absolute;
+    /*background-color: rgb(0, 0, 0);*/
+    border-width: 5px;
+    border-style: solid;
+    width: 89%;
+    height: 6%;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-left: 5px;
+    transition: ease-in-out 0.2s;
+    display: flex;
+    flex-direction: row;
+}
+
+.schedule {
+    position: absolute;
+    background-color: rgba(89, 134, 21, 0.478);
+    /**/
+    right: 0;
+    width: 9%;
+    height: 7%;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-left: 5px;
+    transition: ease-in-out 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.schedule:hover {
+    position: absolute;
+    background-color: rgb(89, 134, 21);
+    right: 0;
+    width: 89%;
+    /*99.5*/
+    height: 30%;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-left: 5px;
+    display: unset;
+}
+
+.schedule:hover~.meteorological-information {
+    width: 9%;
+    height: 7%;
+    border-radius: 12px;
+    margin-right: 5px;
+}
+
+._schedule-img {
+    width: 50px;
+    height: 50px;
+    max-width: 90px;
+    display: unset;
+}
+
+.schedule:hover>._schedule-img {
+    display: none;
+}
+
+/**time**/
+
+.time {
+    width: 9%;
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.schedule:hover~.meteorological-information .time {
+    position: absolute;
+    background-color: aliceblue;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+}
+
+.schedule:hover~.meteorological-information .time .timetxt {
+    position: absolute;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    left: 60%;
+    margin-left: 10px;
+}
+
+/**/
+
+/**weather**/
+
+.weather {
+    width: 20%;
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    background-image: url("./icons/weatherzero.jpg")
+}
+
+.schedule:hover~.meteorological-information .weather {
+    display: none;
+}
+
+/**/
+
+/*****CLASS/STUDENT INFORMATION*****/
+
+.p2wrapper {
+    position: absolute;
+    width: 100%;
+    height: 92%;
+    display: flex;
+    justify-content: center;
+    bottom: 0px;
+}
+
+.panel2 {
+    display: unset;
+    background-color: rgb(232, 208, 177);
+    width: 97%;
+    height: 95.5%;
+    border-radius: 6px;
+    bottom: 0;
+    margin-top: 2%;
+    transition: ease-out 0.3s;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rpwrapper .schedule:hover ~ .p2wrapper > .panel2 {
+    height: 72.6%;
+    margin-top: 20%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p2text{
+    display: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    color: rgba(0, 0, 0, 1);
+    transition: ease-out 0.3s;
+}
+
+.rpwrapper .schedule:hover ~ .p2wrapper > .panel2 > .p2text {
+    display:unset;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.rpwrapper .schedule:hover ~ .p2wrapper > .panel2 > .wrappertext2 {
+    display:none;
+}
+
+.wrappertext2{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wip{
+    display: unset;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    color: rgba(0, 0, 0, 0.5);
+    transition: ease-out 0.3s;
+}

@@ -1,0 +1,90 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new</title>
+    <link rel="stylesheet" href="./left-panel.css">
+    <link rel="stylesheet" href="./right-panel.css">
+</head>
+
+<body>
+    <div class="uniwrapper">
+        <div class="classes" id="classes">
+            <div class="cspacer"></div>
+            <div class="ctitle">
+                <div class="space"></div>
+                <h3 class="globaltitle">classes</h3>
+                <div onclick="add(0)" class="add">
+                    <h3 class="title">+</h3>
+                </div>
+            </div>
+            <div class="lpwrapper" id="lp1">
+                <div class="ccwrapper">
+                    <div class="class" id="class1">
+                        <h3 class="globaltitle2">class 1AA</h3>
+                    </div>
+                    <div class="class-activity">
+                        <div class="activecircle" id="ac1"></div>
+                    </div>
+                    <div onclick="next()" class="ccnext"><i class="arrow right"></i></div>
+                </div>
+                <div class="cspacer2"></div>
+            </div>
+        </div>
+
+        <div class="N" id="students">
+            <div class="cspacer"></div>
+            <div class="ctitle">
+                <div onclick="back()" class="uni-back"><i class="arrow left"></i></div>
+                <h3 class="globaltitle">students</h3>
+                <div onclick="add(1)" class="add">
+                    <h3 class="title">+</h3>
+                </div>
+            </div>
+            <div class="lpwrapper" id="lp2">
+                <div class="ccwrapper">
+                    <div class="student" id="student1">
+                        <h3 class="globaltitle2">Ronaldo jr.</h3>
+                    </div>
+                    <div class="student-age">
+                        <h3 class="globaltitle3">12 yrs.</h3>
+                    </div>
+                    <div class="student-bdate">
+                        <h3 class="globaltitle3">17 - 2010</h3>
+                    </div>
+                </div>
+                <div class="cspacer2"></div>
+            </div>
+        </div>
+
+        <div class="right-panel" id="schedule">
+            <div class="rpwrapper">
+                <div class="schedule" id="schedule">
+                    <img class="_schedule-img" src="./icons/schedule.png" alt="_schedule.img">
+                </div>
+                <div class="meteorological-information">
+                    <div class="time">
+                        <h3 id="time" class="globaltitle timetxt">9:41</h3>
+                        <!--<h3 id="time" class="globaltitle timetxt">9:41</h3>
+                        <h3 id="time" class="globaltitle timetxt">9:41</h3>-->
+                    </div>
+                    <div class="weather">
+                        <h3 id="weather" class="globaltitle0 wtxt">🌧️ Rainy⠀⠀⠀27°C</h3>
+                    </div>
+                </div>
+                <div class="p2wrapper">
+                    <div class="panel2" id="panel2">
+                        <h3 class="p2text">Close the schedule to view student/class information.</h3>
+                        <div class="wrappertext2"><h3 class="globaltitle2 p2text2">Click on a student/class to view information. <h3 class="wip">(work in progress)</h3></h3></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./interactive.js"></script>
+</body>
+
+</html>
