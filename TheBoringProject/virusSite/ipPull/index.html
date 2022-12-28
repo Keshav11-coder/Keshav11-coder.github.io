@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://www.orangecountyseomarketing.com/projects/_ip_angularjs.html -->
+<html ng-app="geo" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}</style></head><body style="">
+	<div ng-controller="geoCtrl" class="ng-scope">
+		<p ng-bind="ip" class="ng-binding">186.179.163.148</p>
+		<p ng-bind="hostname" class="ng-binding"></p>
+		<p ng-bind="loc" class="ng-binding">5.8664,-55.1668</p>
+		<p ng-bind="org" class="ng-binding">AS27775 Telecommunicationcompany Suriname - TeleSur</p>
+		<p ng-bind="city" class="ng-binding">Paramaribo</p>
+		<p ng-bind="region" class="ng-binding">Paramaribo</p>
+		<p ng-bind="country" class="ng-binding">SR</p>
+		<p ng-bind="postal" class="ng-binding"></p>
+	</div>
+  <script src="./_ip_angularjs_files/jquery-1.10.2.min.js.download"></script>
+	<script src="./_ip_angularjs_files/angular.min.js.download"></script>
+	<script src="./_ip_angularjs_files/angular-route.min.js.download"></script>
+	<script>
+	'use strict';
+	var geo = angular.module('geo', [])
+	.controller('geoCtrl', ['$scope', '$http', function($scope, $http) {
+		$http.jsonp('http://ipinfo.io/?callback=JSON_CALLBACK')
+			.success(function(data) {
+			$scope.ip = data.ip;
+			$scope.hostname = data.hostname;
+			$scope.loc = data.loc; //lat-longtitude
+			$scope.org = data.org; //organization
+			$scope.city = data.city;
+			$scope.region = data.region; //state
+			$scope.country = data.country;
+			$scope.postal = data.postal; //city area code
+		});
+	}]);
+	</script>
+
+<div id="site-usage-rating" style="position: fixed; width: 80px; height: 80px; bottom: 40px; right: 40px; color: black; border-radius: 50px; text-align: center; z-index: 9999; font-size: 13px; padding: 6px; font-family: monospace; line-height: 15px; overflow-wrap: normal; background-color: green; opacity: 0;">Site Malicious Rate<br><b>0.0</b></div></body></html>
