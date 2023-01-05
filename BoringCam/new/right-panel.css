@@ -158,7 +158,7 @@
 }
 
 .rpwrapper .schedule:hover ~ .p2wrapper > .panel2 {
-    height: 72.6%;
+    height: 71%;
     margin-top: 20%;
     display:flex;
     align-items: center;
