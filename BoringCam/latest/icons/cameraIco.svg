@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="150mm"
+   height="145mm"
+   viewBox="0 0 150 145"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="cameraIco.svg"
+   inkscape:export-filename="cameraIco.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview744"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false" />
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:6;stroke-dasharray:48, 48;stroke-dashoffset:0"
+       id="rect788"
+       width="134.51573"
+       height="97.829636"
+       x="7.3421359"
+       y="41.560184"
+       ry="27.174896" />
+    <path
+       id="rect1238"
+       style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:6;stroke-dasharray:none"
+       d="M 54.041295,5.9922918 H 95.25194 l 10.7578,21.6707542 -62.812305,0.05649 z" />
+    <ellipse
+       style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:7.19834;stroke-dasharray:57.5867, 7.19834;stroke-dashoffset:0"
+       id="path1349"
+       ry="27.580034"
+       rx="27.223034"
+       cy="90.474991"
+       cx="74.600014" />
+  </g>
+</svg>

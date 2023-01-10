@@ -1,0 +1,211 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Live State 🔴</title>
+    <link rel="stylesheet" href="./live-leftc.css">
+    <link rel="stylesheet" href="./live-rightc.css">
+    <link rel="stylesheet" href="./controls.css">
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+</head>
+
+<body>
+    <div class="document">
+        <div class="left-controls" id="lc">
+            <div class="quickStats align row">
+                <div class="service"></div>
+                <div class="stats align column">
+                    <h3 class="globaltext1 sttext">Status</h3>
+                    <div class="qstats column">
+                        <h3 class="globaltext3">🟢Active</h3>
+                        <h3 class="globaltext3">🟢connection: stable</h3>
+                        <h3 class="globaltext3">🔴bored: 78%</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper0 align column">
+                <div class="class center row">
+                    <div class="Bored center">
+                        <h3 class="globaltext2 mlc">🔴</h3>
+                    </div>
+
+                    <div class="classname center">
+                        <h3 class="globaltext1 mlc">1A</h3>
+                    </div>
+
+                    <div class="Teacher center">
+                        <h3 class="globaltext2 mlc ctext">Dr. James</h3>
+                    </div>
+
+                    <div class="go center" onclick="openClassLive()">
+                        <i class="arrow right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-controls column align" id="rc">
+            <div class="wrapper3 column align" id="rcw3">
+                <div class="live row center" id="live">
+                    <div class="widget bgblue center sc"><img src="../icons/count.svg" class="count">
+                        <div class="StudentCount">
+                            <h3 class="globaltext0">30</h3>
+                        </div>
+                    </div>
+                    <div class="widget bgblue center yc"><img src="../icons/yawns.svg" class="count">
+                        <div class="StudentCount">
+                            <h3 class="globaltext0">12</h3>
+                        </div>
+                    </div>
+                    <div class="widget bgblue center dc"><img src="../icons/drowsiness.svg" class="count">
+                        <div class="StudentCount">
+                            <h3 class="globaltext0">15</h3>
+                        </div>
+                    </div>
+                    <div class="widget bgblue center pc"><img src="../icons/phone.svg" class="count">
+                        <div class="StudentCount">
+                            <h3 class="globaltext0">3</h3>
+                        </div>
+                    </div>
+                    <div class="widget bgblue center bp"><img src="../icons/perc.svg" class="count">
+                        <div class="StudentCount">
+                            <h3 class="globaltext0">78%</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="boredChart row center" id="bc">
+                    <canvas id="currentSession"></canvas>
+                    <canvas id="overalHistory"></canvas>
+                </div>
+
+                <div class="change row center" id="cm">
+                    <div class="graph1 column center">
+
+                    </div>
+                    <div class="graph2 column center">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls" id="settings">
+            <div class="controls-stats align row" id="controls-stats">
+                <img src="../icons/cameraIco.svg" class="logo">
+                <div class="logo-text">
+                    <h3 class="globaltext0">BoringCam</h3>
+                </div>
+            </div>
+            <div class="wrapper" id="wrapper">
+                <div class="wrapper0 align column" id="options">
+                    <div class="soption center row" onclick="transform()">
+                        <h3 class="globaltext1">History</h3>
+                    </div>
+                    <div class="soption center row">
+                        <h3 class="globaltext1">End Session</h3>
+                    </div>
+                    <div class="soption center row">
+                        <h3 class="globaltext1">Active Sessions</h3>
+                    </div>
+                    <div class="soption center row bgblue">
+                        <h3 class="globaltext1">Style</h3>
+                    </div>
+                    <div class="soption center row bgblue">
+                        <h3 class="globaltext1">Calculation types</h3>
+                    </div>
+                    <div class="soption center row bgblue">
+                        <h3 class="globaltext1">Edit Widgets</h3>
+                    </div>
+                    <div class="soption center row bggreen">
+                        <h3 class="globaltext1">Camera Feed Type</h3>
+                    </div>
+                    <div class="soption center row bggreen">
+                        <h3 class="globaltext1">Video Link</h3>
+                    </div>
+                    <div class="soption center row bggreen">
+                        <h3 class="globaltext1">View Raw Video</h3>
+                    </div>
+                    <div class="soption center row bgbrwn ">
+                        <h3 class="globaltext1">Update Widgets</h3>
+                    </div>
+                    <div class="soption center row bgred">
+                        <h3 class="globaltext1">Reload</h3>
+                    </div>
+                    <div class="soption center row bgred">
+                        <h3 class="globaltext1">Disable system</h3>
+                    </div>
+                    <div class="soption center row bgblue2">
+                        <h3 class="globaltext1">Contact</h3>
+                    </div>
+                    <div class="soption center row bgblue2">
+                        <h3 class="globaltext1">Donate</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="optionsDisplayDef" id="OD">
+            <div class="wrapper2">
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const Cctx = document.getElementById('currentSession');
+        const Octx = document.getElementById('overalHistory');
+
+        new Chart(Cctx, {
+            type: 'line',
+            data: {
+                labels: ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00'],
+                datasets: [{
+                    label: 'Average boredness percentage current session',
+                    data: [0, 5, 6, 7, 10, 6, 2],
+                    borderWidth: 3,
+                    borderColor: 'green',
+                    pointBorderColor: 'red',
+                    showLine: true,
+
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(Octx, {
+            type: 'line',
+            data: {
+                labels: ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00'],
+                datasets: [{
+                    label: 'Average boredness percentage current session',
+                    data: [0, 5, 6, 7, 10, 6, 2],
+                    borderWidth: 3,
+                    borderColor: 'blue',
+                    pointBorderColor: 'red',
+                    showLine: true,
+
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script src="./interactive.js"></script>
+</body>
+
+</html>
