@@ -45,7 +45,7 @@
 The first thing I did when setting up, was actually installing the esp32s2 board in the Arduino IDE.
 I’m documenting this way later, so I already have it installed:
 
-![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image4.png)
+![](./images/image4.png)
 
 You can see I have to update. But I don't always do that. Since later versions limit some important stuff.
 
