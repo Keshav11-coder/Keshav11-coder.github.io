@@ -45,13 +45,13 @@
 The first thing I did when setting up, was actually installing the esp32s2 board in the Arduino IDE.
 I’m documenting this way later, so I already have it installed:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image4.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image4.png)
 
 You can see I have to update. But I don't always do that. Since later versions limit some important stuff.
 
 Then I just select the board I’m using and we’re good for setting up esp boards.
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image10.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image10.png)
 
 ## Setting up SPIFFS (Serial Peripheral Interface Flash File System)
 You can host your web server with an esp32s2. But to upload the webpage content to display on your webpage, you need to upload data to the esp32 from a data folder using SPIFFS.
@@ -59,7 +59,7 @@ You can host your web server with an esp32s2. But to upload the webpage content 
 ### Spiffs installation
 If I go into my arduino folder, where all my projects are, I created a new folder called “tools”. In that folder I created another folder called “ESP32FS”. In the ESP32FS folder I created another folder called “tool”, and put the “esp32s2.jar” in that folder. The total structure should look like this:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image7.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image7.png)
 
 I stored the whole structure on github in a zip, so when something goes wrong, I don't have to go searching for the original one.
 
@@ -68,7 +68,7 @@ I stored the whole structure on github in a zip, so when something goes wrong, I
 Checking if it works
 When that has already been done, I restarted my arduino IDE and searched for an option called “esp32 sketch data upload”
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image23.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image23.png)
 
 # Setup NodeJS Dev Environment on your PC
 
@@ -78,11 +78,11 @@ I already had nodeJS installed from 2021, when we were flying an AR drone with i
 ## Upgrading my NodeJS
 As I already said, I already had nodeJS for some time and it was a pretty old version. So I downloaded the latest version 18: 
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image6.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image6.png)
 
 Installed it, and it was good to go.
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image17.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image17.png)
 
 ## Installing NVM (Node Version Manager)
 
@@ -96,14 +96,14 @@ Releases · coreybutler/nvm-windows · GitHub
 
 … unzipped it, took the nvm-setup folder somewhere safe and double-clicked the nvm-setop.exe file inside of it.
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image5.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image5.png)
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image12.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image12.png)
 
 ### Checking if it works
 Now that all of that is finished, I opened the NodeJS command prompt.
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image16.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image16.png)
 
 And typed in: “Node”, “nvm”, “npm”; to check if everything works. If it doesn’t give an error, it’s good. If it does, I did something wrong.
 
@@ -117,29 +117,29 @@ In the session, Mr Theo showed us how to use mqtt. Here’s how we did it.
 ### MQTTLens
 Mqttlens is a chrome extension, or wep app, that you can add to chrome. I added it already:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image11.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image11.png)
 
 Now that we added it, let's launch the app:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image14.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image14.png)
 
 ### Setup connection to HIVEMQ
 As you can see, I already have a connection named “bootcamp2022”, here are the settings.
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image1.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image1.png)
 
 As you also can see in the heading title, I said HIVEMQ instead of MQTT, because while coding we had some problems with MQTT, so we switched to HIVEMQ. HIVEMQ is built on top of MQTT, so basically MQTT but better.
 
 Next we set the topic, which is currently set to “codettes2022”, to .. well .. “codettes2022” at both places. Then we type a message. And then click on “subscribe” and then publish to publish the message:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image3.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image3.png)
 
 Now you see the message popup down there.
 
 ## Creating a sketch of my chat app
 After explaining how MQTT works, we had to make a sketch. My sketch looks like this:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image21.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image21.png)
 
 Now we had to make that into html tags. (transforming it into a web page/chat app)
 
@@ -159,7 +159,7 @@ Etc ..
 
 The first thing I started doing is making a basic userlist with the <aside> element:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image18.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image18.png)
 
 It doesn’t update itself yet, but that will be fixed later. The basic code structure for this is:
 
@@ -208,7 +208,7 @@ Then we have my chat app code:
 
 Here it’s also in an ```<aside>``` element, but then we have a bunch of div’s. First the chat log div, where you chat. In there is another div, where the person you are talking to is displayed. Then we come to the text-input element. In there the chat log element. Then we have a little warning, and then we add some spacing because we cannot give the inputs paddings or margins, else we cannot display our messages. And then we add the input and the button, and finally we close it.
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image22.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image22.png)
 
 #### Libraries
 A key thing to note is that we need the mqtt library in order to use it in our javascript. Actually this had to be first but here it is, all in the ```<head>``` element:
@@ -224,7 +224,7 @@ A key thing to note is that we need the mqtt library in order to use it in our j
 
 Now that we have that done, I can show you the complete thing:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image8.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image8.png)
 
 Now let's code some javascript.
 
@@ -533,10 +533,10 @@ With all of this code together, we form the ```app.js```. Download it at the git
 ## Does it work though
 Yes, it does. And I finalized it a bit. Added some new colors, and even the login screen, check it out:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image24.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image24.png)
 
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image15.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image15.png)
 
 And that is the chat app until now! Hope you enjoyed it. And as you can see, it does work.
  
@@ -592,7 +592,7 @@ We are first setting the ```app.get``` property to whatever you want, it just do
 
 Here I have an example but here we fetch some data from ```MongoDB``` and use it there, a topic i'll explain later:
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image13.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image13.png)
 
 ## Set up basic communication using mqtt between back-end and client
 If you’ve looked at the previous chatapp code, you’ve probably seen functions like “```client.on message```” or “handlepong” or “sendmessage” .. we are going to use those functions here too.
@@ -885,7 +885,7 @@ We are only changing the values and the collection name to “users”.
 
 So the goal I’m trying to achieve by doing this is storing all user data and message logs in mongodb, and when a user goes to the endpoint, you can view the entire log of messages or top ten.
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image20.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image20.png)
  
 The full user update code looks like this:
 
@@ -968,7 +968,7 @@ MongoClient.connect(url, function (err, db) {
 
 So I’m doing the basic stuff until I take the latest one and then I say that I only want the message from the JSON, else it will come in as JSON objects. And then finally, I “globalize” it and pass it to the render.
 
-![](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/images/image2.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image2.png)
 ###### Example getting data from a tello drone, storing, retrieving and displaying it
 
 So now that we know what the approach does, let's look at the code.
