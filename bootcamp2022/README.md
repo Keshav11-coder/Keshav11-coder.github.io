@@ -1108,3 +1108,112 @@ After all that, I had to export the file to ```gcode``` format. Gcode tells the 
 
 #### This is what G-Code looks like:
 ![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image33.png)
+
+# Freecad
+
+======
+
+# Introduction  
+
+‘Ts up! 
+Today I'm documenting about the ```freecad``` 3d & 2d sketching software and what I did with it.
+   
+> FreeCAD is an open-source parametric 3D modeler made primarily to design real-life objects of any size. Parametric modeling allows you to easily modify your design by going back into your model history and changing its parameters.
+   
+welpp lets get into it.
+   
+# Setup
+I downloaded freecad from [here](https://wiki.freecadweb.org/Download). 
+
+I downloaded version ```0.20```.
+   
+… and installed it by opening the .exe file (logical)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image53.png)
+
+Then I just clicked next throughout the installer .. after that I opened it up and this is what I saw.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image56.png)
+   
+# Project setup
+As you can see, I already have a few projects, but to set up a project and start drawing ```2d``` AND ```3d``` we have to do some things here and there.
+## Create a new project
+   
+To create a new sketch, we first need to have a new project.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image54.png)
+
+For that, just press on “create new”.
+
+If you’re in, you should see this:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image50.png)
+
+## Create a new sketch
+
+To create a new sketch, click on the dropdown in the workbench, and select sketcher.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image45.png)
+
+After that, press on create sketch:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image49.png)
+
+You will be greeted with this.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image47.png)
+
+Simply select XY-plane and hit OK.
+   
+## Drawing Rectangles
+Oof enough of that setup, Now let’s draw!
+
+For this example, I’m gonna draw a ```rectangle``` with a ```hole``` in it and convert it to a 3D object.
+
+First, we want to select “```create rectangle```” and draw a rectangle on the workplane.
+
+*To do that just click on it, click on one point of the workplane, drag your mouse to where-how-big you want the rectangle to be, and click again. To escape then just- press ```esc``` on your keyboard … ?
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image57.png)
+
+After that*, let’s set the width and height of our rectangle. You can do this by using these options:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image51.png)
+
+And you guessed it, the first one is for width and the second for height.
+
+To set the width and height, press the button and select the side of your rectangle to where you want to apply it: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image55.png)
+
+I used 100 mm. You can do the same for the height.
+
+## Drawing holes
+To make a hole, we draw a circle in the rectangle: 
+
+To do this, do the same as last time but only you press the circle button: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image48.png)
+
+… and then you click on your rectangle and move your mouse away from the middle point of the circle and click to create the circle:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image46.png)
+
+You can reposition the circle but I'll just leave it there ‘cause of laziness :/.
+
+After that just select the whole sketch. You’ll see why in the next topic.
+
+## Converting to 3D
+To do this just select the whole thing and go to part design on the dropdown menu.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image52.png)
+
+And then you press on “pad”:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image43.png)
+
+So now just press that and then enjoy your design!
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image44.png)
+   
+Honestly, this was a bit hectic and confusing, but it ended up looking pretty good. Still not my favorite software though.
