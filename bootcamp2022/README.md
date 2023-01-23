@@ -1217,3 +1217,300 @@ So now just press that and then enjoy your design!
 ![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image44.png)
    
 Honestly, this was a bit hectic and confusing, but it ended up looking pretty good. Still not my favorite software though.
+
+# CNC & lasering
+
+======
+
+Welcome back! Long time no documentation.. I’ll be continuing today.
+
+Today I’ll be documenting about setting up and using the ```cnc``` and the ```laser``` that we have at the lab.
+
+# CNC
+For ```cncing``` we need a ```3d``` object (obviously), so we’re gonna go into freecad again and create a new project. 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image70.png)
+
+As you can see I created a little object here.. It will be a front panel for the gimbal on my drone .. needs more modification but for cncing it looks pretty good.
+
+## Creating a Job
+First, we have to create a ```job``` to continue.
+
+So what we’re gonna do first is in the workspace, is switch to “path” and look for this:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image94.png)
+
+The first icon here is called a job. We use it to specify the instructions for cncing. Lets press it: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image85.png)
+
+Select the only body you have and press ok.
+   
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image71.png)
+
+After that change the parameters at Setup to these:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image84.png)
+
+After that zoom into your design and on the top layer you click on a tiny corner dot: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image99.png)
+
+And then press on “set origin” in the job parameter menu.
+Then we go to the “output” tab:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image63.png)
+
+At the output file you give it a name and add after that the extension “.uccnc”.
+
+And at the processor you select all the way at the bottom UCCNC.
+
+
+
+Click ok.
+
+## Setup cnc environment
+### Endmill Setup
+So what we’re gonna next is look for this space:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image78.png)
+
+And after that we press on these 3 drills icon to create a new endmill:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image58.png)
+
+After that you should see this screen:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image67.png)
+   
+ … and then we press on this icon to create a new endmill:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image74.png)
+
+After that you should see this screen:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image100.png)
+
+And then we click on “create toolbit”
+
+You should get this screen:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image91.png)
+
+.. and then you click on “endmill.fcstd” and press open.
+When you’re done with that, you will see this: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image92.png)
+
+It will ask you to give your endmill a name and save it as “.fctb”. I named it 3mm_em (em standing for endmill) because the diameter of the drill that we are using is ```3mm``` wide.
+
+Click save.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image68.png)
+
+It will bring you back here and you can see it added my 3mm_em right there at the bottom.
+After you’re done with that, double-click it and it should give such a  pop-up:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image87.png)
+
+At the right, under “Tool Bit”, you see the parameter part. There change the values:
+
+##### Cutting edge Height: 20.00 mm
+
+##### Diameter: 3.00 mm
+
+##### Length: 40.00 mm 
+
+##### Shank diameter: 3.15 mm
+
+
+
+
+After that just click “ok” and close.
+
+After that you will be back here:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image101.png)
+
+Click on the 3mm_em and click add to job.
+
+
+
+### Operations
+It’s time for operations. No not that kind, these kind: *shows CNC operations you most likely know nothing about*
+
+No but seriously. To create an operation, search for this icon: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image65.png)
+   
+.. and press it. This is a pocket shape. Since I have one pocket and a hole in my design, we want to start with the pocket first. When you press it, you should see this:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image95.png)
+
+(by the way everything i'll be skipping stays default)
+#### Base geometry: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image66.png)
+
+At base geometry you select all the inside sides of the pocket and press add. You can group select holding control or command. For a circle pocket there's only one side. You just add that then.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image75.png)
+
+#### Depths:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image79.png)
+
+At the Depths the first parameter for cncing always stays ```zero```. Thats because the cnc works ```down negative```.
+
+The final depth is the depth of the pocket into the shape. If it was a hole it would be the thickness of the shape. If it was a hole in a pocket it would be the shape thickness - the pocket final depth. In my case my pocket is ```5.50 mm``` deep so it becomes ```-5.50```, because the machine works negative downwards.
+
+The step down is the value of the endmill (which is 3 mm) / 2. So it will be 1.5 mm. If it’s for example 5 mm then the step down would be ```2.5 mm```.
+
+And the finish step down is ```0.00 mm```.
+
+#### Operation:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image97.png)
+
+These are the parameters for the operation tab. The tool controller is the endmill. You can select it from there.
+
+Coolant mode stays ```None```.
+
+Cut mode becomes ```conventional```.
+
+Pattern becomes ```offset```.
+
+Step over percent becomes ```50%``` instead of 100%
+
+.. and the pass extension becomes ```0.00 mm```.
+
+### EdgeCut
+If we are done with the inside cuts, we want to cut the shape out right? That's where profiles come in. for the profile it’s the same as the inside cut but then we select the ```outside cut``` instead. Here:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image64.png)
+
+For this base geometry we select the ```top``` plate of the design and add.
+For the ```depths```: 
+   
+Starting depth ```stays zero```.
+
+Final depth is the thickness of the material that we’re using ```+ 0.10 mm```. In our case it’s 11 mm so the value becomes ```-11.10 mm```.
+
+And the step down stays ```1.50 mm```
+
+Heights stay the ```same``` and for operations these are the parameters: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image88.png)
+
+We set the cut side to ```outside```. The direction doesn't matter and the rest stays the same.
+### Taps
+Introducing ```taps```. Taps hold the design together so when the machine is cncing the object your cutting off doesn’t shift resulting in endmill damage.
+
+So how do you add them?
+
+For holes and outside cuts: 
+
+You click on the ```profile / inside cut``` and navigate to “```Path```” in the upper menu, then at the bottom you see ```path dressup```.. And select Tag dress-up. And then you should see this: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image77.png)
+
+Then just hit “ok”. There's nothing much to change here.
+
+# Lasering
+## Shape
+```Lasering``` is pretty cool! It’s so fast, so precise and so convenient. Today we’re documenting about lasering a piece off of makercase.com, adding an engraving to the shape (with that I mean a picture to engrave onto it) and then we set it up for the laser to laser. The first thing to do is to go to makercase.com and download a shape. I want a box so I’m gonna press on box. You can also create a 2d shape in freecad by creating a normal sketch and then to 
+draft > modification > shape 2D view
+And you should get a 2d shape which you can then export as an ```svg```. But today I'll be doing it with makercase. So when I’m on makercase I’ll go ahead and press on basic box: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image60.png)
+
+And then I fill in these parameters when in: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image86.png)
+
+You can see little things on the edge of the box sides. Those are based on ```kerfs```. When making slots with freecad too for lasering, you need kerfs. The formula for that is 
+```material thickness - 2 * kerf``` in our case the kerf is ```0.05```
+Let's take a closer look at the parameters: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image82.png)
+
+First I set my box dimensions, then I select whether I want inside or outside dimensions. Then I click on custom thickness for material thickness and set it to 2 mm.. Because the laser material is around 2 mm thick. And then I select a closed box and set the edge joints to finger and adjust it to create only one finger. You can create more but for testing purposes we have one.
+
+After that we click on download box plans.
+
+I set the panel labels to disabled because that will cause an engraving. And also the panel layout to separated because I’ll laser only one of them
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image72.png)
+   
+Next is the line formatting. Here I'll only change the cutting line width to ```0.2```.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image61.png)
+
+Next is the kerf and corners. We select at the left the compensation type and set it to kerf. I set the kerf to ```0.05``` but it would fit better if the kerf was ```0.06```. Because I'm not trying to fit 2 pieces together it does not matter for me, but remember it, ```kerf is actually 0.06```.
+
+
+
+And then finally we download the shape.
+
+
+## Inkscape
+For the editing of the shape we will also need ```inkscape```. We already installed it so we’re gonna import the .svg file into inkscape and edit it:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image73.png)
+
+After we’ve imported it I double clicked the entire thing so it would ungroup. And now I delete ```the other 5``` because I don’t need them.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image90.png)
+
+Now on the right side I press on (while selecting the shape) edit objects:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image98.png)
+
+You should get this:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image81.png)
+
+And then I go to stroke paint and give it a bright red color:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image80.png)
+
+On a laser, ```red``` stands for ```cutting``` and any other color for ```engraving```. So I chose red for the outer edges and when adding an image soon I will make it ```black```.
+
+
+
+## Image bit tracing
+So when I talked about ```engraving``` I meant engraving images. Lets import an image and ```bit trace``` it for the laser to understand: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image93.png)
+
+Now we go to ```path``` > ```trace Bitmap``` in the upper menu.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image83.png)
+
+And we just press apply. Nothing to change there.
+
+It should give 2 copies. Delete the original image and position your traced image.
+   
+Now it should look like this: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image76.png)
+
+Now let’s group it. To do that we have to select both objects, right click and select group.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image96.png)
+
+And now we save it as an svg file.
+
+
+## Lasering software
+Now we can import the svg image into the lasering software, ```lightburn```: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image62.png)
+
+After that we should get this: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image69.png)
+
+Now we connect to the laser and send it over by pressing the send button.
+
+Enjoy!
