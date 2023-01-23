@@ -1054,7 +1054,9 @@ That was pretty simple.. Not too much.. But Mr Theo has another method he will e
 # Installation
 First thing I had to do was download & install ```cura v5.0.0``` from [here](https://github.com/Ultimaker/Cura/releases/tag/5.0.0), which wasnt that hard.
 
-![]()
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image40.png)
+
+I opened the .exe file and this was the setup wizard “landing” screen.. I just clicked through it (next).
 
 
 
@@ -1068,319 +1070,78 @@ First thing I had to do was download & install ```cura v5.0.0``` from [here](htt
 
 
 
-
-
-
-
-
-
-
-
-
-
-I opened the .exe file and this was the setup wizard “landing” screen.. I just clicked through it.. Next .. Next..
-
-
-
-
-
-
-
-
-
-
-
-
-
-Printer
+# Select Printer
 In order to print my designs, I needed to select a printer. First I went to settings > add printer:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image28.png)
 
+Then I clicked on a non-networked printer and searched for AnyCubic > AnyCubic Predator
 
-Then I clicked on a non-networked printer and searched for AnyCubic > AnyCubic Predator:
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image32.png)
 
+And then I just pressed add.
 
-And then I just press add.
-Parameters
-After installing cura I had to set the printer and its parameters: 
+# Parameters
+After installing cura I had to set the printer and its parameters, because if you dont, it wont work properly.
 
-Quality: 
+## Quality: 
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image39.png)
 
+## Walls:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image31.png)
 
+## Top/Bottom:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image35.png)
 
+## Infill:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image26.png)
 
+## Speed:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image25.png)
 
+## Travel:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image42.png)
 
+## Cooling:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image29.png)
 
+## Support:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image25.png)
 
+## Build Plate Adhesion:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image30.png)
 
+### … And the rest stays on default:
 
-
-
-
-Walls:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Top/Bottom:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Infill:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Speed:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Travel:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Cooling:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Support:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Build Plate Adhesion:
-
-
-
-
-
-
-
-
-
-
-
-… And the rest stays on default:
-
-
-
-
-
-
-
-
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image34.png)
 
 After doing that I hopped on tinkercad after ages, and made a new design:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image37.png)
 
+We had to do a test print, so I just pulled up a silly ```little box of 2cm by 2cm``` and exported as ```STL```:
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image38.png)
 
+After the download, I imported the stl in my ```cura```: 
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image28.png)
 
+As you can see, it will take ```2 minutes``` to print.
 
+# G-Code
+After all that, I had to export the file to ```gcode``` format. Gcode tells the printer where to go, with what speed to travel etc .. according to the settings we set earlier.
 
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image36.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-We had to do a test print, so I just pulled up a box of 2cm by 2cm and exported as STL:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-After the download, I imported the stl in my cura: 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-As you can see, it will take 2 minutes to print.
-G-Code
-After all that, I had to export the file to gcode format. Gcode tells the printer where to go and what to use etc.. etc..:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#### This is what G-Code looks like:
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image33.png)
