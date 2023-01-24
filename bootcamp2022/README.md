@@ -1,4 +1,4 @@
-theme: midnight
+theme: Midnight
 
 # Interface & Application programming
 
