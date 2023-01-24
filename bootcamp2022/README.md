@@ -1629,3 +1629,204 @@ My key resources to build the drone are (some of them, most important):
  The total cost of the drone is around $520, all components included.
  
  And that was BMC!
+
+# Final Project
+
+======
+
+# Who am I?
+Hey, my name is Keshav, Keshav Haripersad, Nice to meet you.
+###### (although I don't know who you are)
+
+I’m a graduated Innostarter student, 12 years old at the moment. 
+My biggest hobby is coding, mostly JavaScript, both front- and back end.
+That’s it. What else do I have to say? I have a whole page.
+
+Uhm.. check out some of my designs maybe? I don’t know what you expected me to put here Lol.
+
+Oh yeah, I like ```drones```, like a lot. My first ever drone was the dji tello, love it and hate it at the same time, I did a lot of cool stuff with it, like making missions, self flying tello that hunts for your head and ‘accidentally’ flies into you .. and some more, I made my own tello JavaScript library .. spent ‘bout 4 months coding the Tello so far in this story..
+
+ .. but my biggest dream ever was to build my own drone, and I (kind of) managed to do that .. you see …
+
+This February there was one of those competitions, hack-O-mation, a 4 month program where you build a solution .. I joined a team .. Inno4, then Inno5, then back to Inno4.. We entered the competition ‘cause why not ?
+
+ well .. we needed an idea, half of our team wanted to make a farming drone .. like what?? A farming- drone?? .. while the other half wanted to make A surveillance drone, of course I was on the surveillance drone side because I like spying on people for no reason, aaand in the end we decided on the surveillance drone .. the full story is in another document, but you wont get that document. (in a friendly way)
+
+Ok so finally we got to the naming of our drone, we named it .. 
+
+SkyCam
+Your Eye In The Sky
+
+
+
+
+
+
+
+
+
+
+Well what does it do?
+Now that we know how it started, what was the original plan / purpose of SkyCam?
+
+It’s in general a surveillance drone, It can do the hard tasks a human can’t easily do .. for example .. 
+Road inspection
+The police cannot be everywhere in a split second over the road, why not conquer the skies then, SkyCam will be able to fly to the place where the accident happened and automatically take pictures of what it thinks the accident is. Just pass some aspects of the cars or environment and it will be able to do that.
+Police chasing
+Imagine there was a robbery, the police are chasing the robbers down by the road, suddenly, a crash, the police cars get stuck in the crash, they lost them .. not with SkyCam, SkyCam will have the capability to chase certain objects down, making use of object detection and AI.
+Missions
+The drone will be able to do any surveillance mission, maybe we need to explore a place in the jungles, but that’s too dangerous for humans, we can just send a drone to the place, controlled by somebody so it doesn't get lost, or self flying mode. This brings me to the next topic.
+Tree Detection
+We currently go into the jungles and count how many trees of a certain kind there are .. why put humans in possible danger when you can just send a drone to do that for us, making use of object detection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Research and Conclusions
+When doing some research, I discovered more about the drone’s mechanisms and what sensors I would need. I also settled for esp32 with arduino nano as the brains, and raspberry pi as the video handlers, since they would fit best.
+
+ To control the motors we need an ESC, electronic speed controller. After a lot of prototyping we decided to go with the blheli esc board that can handle four esc’s together instead of the chinese 30A singular esc’s, since they were kind of hard to sync and incompatible with most firmwares.
+
+Regarding the GPS, everything went fine with that, that does not need any upgrades, only the software a bit to limit the amount of satellites required to work but for the rest that’s okay.
+
+In the end, I was considering removing police chasing from the list as it is not easy to get permission for military activities from the government, what we could do is offer services such as missions and database storing systems.
+
+In the end the product seemed to fit more with professional drone pilots than the military so we settled for that as our target group.
+
+I was also going to add a second raspberry pi camera at the bottom for stabilization but it would become too expensive and hard to control so I left it out.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+System architecture
+Front
+This was the first prototype sketch of what I was trying to build, from the front:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yes, these are sketches on paper. This was almost how the front part of my drone would look like, two ultrasonic sensors each top-side, and all the way at the front an open area for the gimbal. Speaking of gimbals .. 
+
+.. this was the approach I was going for with the gimbal:
+
+
+
+
+
+
+
+
+
+
+That’s almost what It would look like, one motor in the y axis and the other doing the x.
+
+
+
+
+
+
+Back 
+This was the first prototype for the back:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[figure 1] : 
+I was going for a base motherboard, with substations, like an ultrasonic station that handles ultrasonic sensor cables .. but making your own pcb was a lot harder than I thought, so I just went with the main pcb including our basic esp32s2 and arduino nano together, and separately the raspberry pi 3 with the camera. 
+
+[figure 1] : There's also going to be another ultrasonic sensor at the bottom for height measurement.
+
+[figure 1] : In the middle section there will also be the ESC controller I talked about earlier, to control the motor speeds.
+
+[figure 3] : we also have 2 sets of ultrasonic sensors going at the back, for obstacle avoidance
+
+
+
+
+
+
+Frame
+The last sketch was about the frame. What it will look like:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I was thinking of instead making the wings different in length, I make them all equal.
+
+The drone will have another type of frame based on the previous pictures, this was just the first frame prototype, more is going to be done in the designing phases.
+
