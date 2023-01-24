@@ -1,5 +1,3 @@
-theme: Midnight
-
 # Interface & Application programming
 
 ======
@@ -1516,3 +1514,118 @@ After that we should get this:
 Now we connect to the laser and send it over by pressing the send button.
 
 Enjoy!
+
+# Business Model Canvas
+
+======
+
+# Business Model Canvas
+*Business Model Canvas* .. don’t like it, but I still have to document everything..
+## What is it
+> *“```The Business Model Canvas``` is a strategic management template used for developing new business models and documenting existing ones. It offers a visual chart with elements describing a firm's or product's value proposition, infrastructure, customers, and finances, assisting businesses to align their activities by illustrating potential trade-offs."*
+
+Canvas were initially proposed in ```2005``` by [Alexander Osterwalder](https://en.wikipedia.org/wiki/Alexander_Osterwalder)”
+
+Woah, I almost fell asleep right there..
+
+So now that we know what it means, let’s dive deeper.
+
+## Two things
+There were ```two``` things I’ve learned, **```Business Plan```** (BP) and Business Model Canvas (BMC).
+
+### Business Plan
+What is a Business Plan?
+
+> Business Plan means a plan for successful operation of a business or startup that identifies Sources of Revenue and Target Customer Base combined with details of Financing.
+
+(to be honest I don’t know what **any of that means** but ok (I **don't like** BMC))
+
+### Business Model Canvas
+Now what is A Business Model Canvas??
+
+You see .. 
+
+It’s basically a Business Plan oversight in one page.
+
+**That’s it.**
+
+
+## What I’ve learned
+### BMC Template or Canvanizer
+This is an example of one:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image106.png)
+
+```Key Partners```: Important partners(people, sponsors);
+
+```Key Activities```: The key things the company does. (ex: drone industry, dji focuses mainly on good quality drones and good cameras,);
+
+```Key Resources```: The Key things the company Needs in order to produce Their products. (ex: wood furniture’s Key product is obviously wood);
+
+```Value proposition```: an innovation, service, or feature intended to make a company or product attractive to customers.
+
+```Customer Relationships```: Customer relations refers to the process used by businesses to engage with customers and foster long-term relationships with them. (ex: make something so amazing, that customers will come back every time you release something new)
+
+```Channels```: When the company develops various marketing techniques as well as sales strategies to reach the widest possible customer base. The channels are nothing but ways or outlets to market and sell products.
+
+```Customer Segments```: Customer segmentation is the process by which you divide your customers into segments up based on common characteristics – such as demographics or behaviors, so you can market to those customers more effectively. (according to google)
+
+```Cost Structure```: The cost of your project/business, what all the resources cost, etc etc..
+```Revenue Streams```: Basically how much money you make from what you are doing.. 
+
+### Why Business Model Canvas (BMC)?
+
+```**Quick profile**``` => *Describes a business/venture state/target in one page*
+```**Customer Focused**``` => *Work and iterate from Customer to Service/Offering*
+```**Benchmarking**``` => *Easy benchmarking competitors or peers*
+```**Innovation Business**``` => *Innovate on key Canvas Elements*
+```**Iteration/Optimization**``` => *Easily spot effects of changes & Visual oversight*
+```**Easy for Presenting**``` => *Used as baseline for ring private sector research*
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image104.png)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image105.png)
+
+## My BMC
+
+My BMC looks like this:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image109.png)
+
+As my key partner(s) I have dylan, 'cause why not.
+
+My key activities are:
+   - Missions
+   - Road Inspection
+   - Database storing system
+   - Tree detection
+
+My Value propositions include:
+   - Custom missions
+   - Object detection (custom / built in)
+   - GPS location
+   - Easy to use interface
+   - Custom software / hardware
+   - Fail safe operations
+   - Database management
+   - Decent video quality
+
+My customer relationships:
+   - Custom missions
+   - Object detection (custom / built in)
+   - Easy to use interface
+   - GPS location
+   - Custom software / hardware
+   - database management
+
+My key resources to build the drone are (some of them, most important):
+   - Brushless DC motors
+   - Sensors
+   - - ultrasonic sensors
+   - - gyros
+   - - accelerometer
+   - - GPS
+ 
+ The total cost of the drone is around $520, all components included.
+ 
+ And that was BMC!
