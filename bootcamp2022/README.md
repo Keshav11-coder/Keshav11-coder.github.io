@@ -964,6 +964,81 @@ Lastly we print those values and write them to the ESC's, which will eventually 
 
 And that was embedded coding.
 
+## Stack
+
+This is my stack:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/stack.png)
+
+## Files and Refrences
+
+You can find the link to the embedded code can be found [here](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/ino)
+
+Find the designs [here](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/CAM)
+
+Credits to Murtaza for the [object detection](https://www.youtube.com/@murtazasworkshop)
+
+Find the original designs [here](https://grabcad.com/library/zmr250-dxf-files-for-cnc-milling-1)
+
+# Winning Hack 'O Mation
+
+======
+
+Dont mean to brag .. but ```we won Hack 'O Mation```!!
+
+Hack 'O Mation is a ```6 month``` event where you create a solution according to a theme, The theme was Mobility And Productivity.
+
+sooo we decided to create a drone, to make the tasks that humans can't easily do, easier. So instead of humans doing hard and dangerous work, let robots do it!
+
+Our teammates wanted to create a farming drone .. but like .. *why* (you'll figure out in the above chapter why what when and whatever you're wondering).
+
+Well .. my teammates were (are) ```Shanika```, ```Disha```, ```Sherally``` and ```Varun```.
+
+So the first 3 members wanted to create a farming drone, and Varun and I wanted to create a ```surveillance drone```.. and it was 2 VS 3 so we could easily lose.
+
+But after some statements and arguments we won, and we we're going for a surveillance drone.
+
+So we devided tasks.
+
+I, Keshav, was put on ```camera management``` (because its a surveillance drone obviously) and ```object detection```, because one of the features were detection of multiple obstacles.
+
+I was also put in charge of the ```UI (user interface)```.
+
+coming up: some pictures of the process.
+
+## object detection
+here you can see the object detection working on multiple devices:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/objectDetection1.png)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/objectDetection2.png)
+
+## User Interface
+
+this is the old user interface
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/ui.png)
+
+and in this one I modified it abit (extremely, I made it modern-like):
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/newui.png)
+
+here's a picture of Varun and I working on the drone on ```pitch day``` lol.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/vak.png)
+
+and here was the drone from then:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/prod.png)
+
+and some pictures of us:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/im1.png)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/im2.png)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/hackomimg/im3.png)
+
+And that was it!
+
 # Interface & Application programming
 
 ======
