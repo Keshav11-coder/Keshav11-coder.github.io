@@ -1,3 +1,281 @@
+# Final project
+
+======
+
+## Who am I?
+Hey, my name is ```Keshav```, ```Keshav Haripersad```, Nice to meet you.
+###### (although I don't know who you are)
+
+I’m a graduated Innostarter student, ```12``` years old at the moment. 
+My biggest hobby is coding, mostly ```JavaScript```, both front- and back end.
+That’s it. What else do I have to say? I have a whole page.
+
+Uhm.. check out some of my designs maybe? I don’t know what you expected me to put here Lol.
+
+Oh yeah, I like ```drones```, like a lot. My first ever drone was the dji tello, love it and hate it at the same time, I did a lot of cool stuff with it, like making missions, self flying tello that hunts for your head and ‘accidentally’ flies into you .. and some more, I made my own tello JavaScript library .. spent ‘bout 4 months coding the Tello so far in this story..
+
+ .. but my biggest dream ever was to build my ```own drone```, and I (kind of) managed to do that .. you see …
+
+This February there was one of those competitions, hack-O-mation, a 6 month program where you build a solution .. I joined a team .. Inno4, then Inno5, then back to Inno4.. We entered the competition ‘cause why not ?
+
+ well .. we needed an idea, half of our team wanted to make a farming drone .. like what?? A farming- drone?? .. while the other half wanted to make A surveillance drone, of course I was on the surveillance drone side because I like spying on people for no reason, aaand in the end we decided on the surveillance drone .. the full story is in another document, but you wont get that document. (in a friendly way)
+
+Ok so finally we got to the naming of our drone, we named it .. 
+
+```SkyCam```
+Your Eye In The Sky
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image21.png)
+
+## Well what does it do?
+Now that we know how it started, what was the original plan / purpose of ```SkyCam```?
+
+It’s in general a ```surveillance drone```, It can do the hard tasks a human can’t easily do .. for example .. 
+### Road inspection
+The police cannot be everywhere in a split second over the road, why not conquer the skies then, SkyCam will be able to fly to the place where the accident happened and automatically take pictures of what it thinks the accident is. Just pass some aspects of the cars or environment and it will be able to do that.
+### Police chasing
+Imagine there was a robbery, the police are chasing the robbers down by the road, suddenly, a crash, the police cars get stuck in the crash, they lost them .. not with SkyCam, SkyCam will have the capability to chase certain objects down, making use of object detection and AI.
+### Missions
+The drone will be able to do any surveillance mission, maybe we need to explore a place in the jungles, but that’s too dangerous for humans, we can just send a drone to the place, controlled by somebody so it doesn't get lost, or self flying mode. This brings me to the next topic.
+### Tree Detection
+We currently go into the jungles and count how many trees of a certain kind there are .. why put humans in possible danger when you can just send a drone to do that for us, making use of object detection.
+
+## Research and Conclusions
+When doing some research, I discovered more about the ```drone’s mechanisms``` and what sensors I would need. I also settled for esp32 with arduino nano as the brains, and raspberry pi as the video handlers, since they would fit best.
+
+ To control the motors we need an ESC, electronic speed controller. After a lot of prototyping we decided to go with the ```blheli esc board``` that can handle four esc’s together instead of the chinese 30A singular esc’s, since they were kind of hard to sync and incompatible with most firmwares.
+
+Regarding the GPS, everything went fine with that, that does not need any upgrades, only the software a bit to limit the amount of satellites required to work but for the rest that’s okay.
+
+In the end, I was considering removing ```police chasing``` from the list as it is not easy to get permission for military activities from the government, what we could do is offer services such as missions and database storing systems.
+
+In the end the product seemed to fit more with professional drone pilots than the military so we settled for that as our target group.
+
+I was also going to add a second raspberry pi camera at the bottom for stabilization but it would become too expensive and hard to control so I left it out.
+
+## System architecture
+### Front
+This was the first prototype sketch of what I was trying to build, from the front:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image6.png)
+
+Yes, these are sketches on paper. This was almost how the front part of my drone would look like, two ultrasonic sensors each top-side, and all the way at the front an open area for the gimbal. Speaking of gimbals .. 
+
+.. this was the approach I was going for with the gimbal:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image16.png)
+
+That’s almost what It would look like, one motor in the ```y axis``` and the other doing the ```x```.
+
+
+
+### Back 
+This was the first prototype for the back:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image22.png)
+
+[figure 1] : 
+I was going for a base motherboard, with substations, like an ultrasonic station that handles ultrasonic sensor cables .. but making your own pcb was a lot harder than I thought, so I just went with the main pcb including our basic esp32s2 and arduino nano together, and separately the raspberry pi 3 with the camera. 
+
+[figure 1] : There's also going to be another ultrasonic sensor at the bottom for height measurement.
+
+[figure 1] : In the middle section there will also be the ESC controller I talked about earlier, to control the motor speeds.
+
+[figure 3] : we also have 2 sets of ultrasonic sensors going at the back, for obstacle avoidance
+
+### Frame
+The last sketch was about the frame. What it will look like:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image12.png)
+
+I was thinking of instead making the wings different in length, I make them all equal.
+
+The drone will have another type of frame based on the previous pictures, this was just the first frame prototype, more is going to be done in the designing phases.
+
+## Physical Design
+So we did our research, and our sketches were done. Now it's time to create the designs for printing. For the first prototype we made in Hack O Mation, we used ```tinkercad``` to make a 3D model and print it using general PLA, but that wasn’t that efficient, so now that I’ve learned how to use the ```laser cutter``` at the lab, I can make ```2D``` wooden designs and screw ‘em together to create a ```3D design```.
+
+Ok, so we have a plan, but I am not a good 2D designer, and sure, it's not that different from 3D designing but it's quite a challenge. 
+### Software
+If we want to design in 2D, we need specific software. We can use Freecad from earlier, but I tested with that already and I'm not a huge fan. Then I stepped over to ```Inkscape```, a nice drawing tool that you can use for basically anything 2D (or 3D in 2D drawing format). There's also ```autocad```, but that’s a little bit advanced so I’m sticking with Inkscape.
+#### Getting started
+I downloaded Inkscape from [here](https://inkscape.org/release/inkscape-1.2.2/).
+
+I am using version ```1.2 (.2)```
+
+At first I didn't know what any of the tools meant, but after a while and a lot of youtube videos I managed to figure it out.
+
+But still, I did not have enough drawing experience to draw a drone frame from scrap, so I started by using an existing design and slowly modifying it until it fits with what we’re trying to do.
+
+You can find the ```design``` I used [here](https://grabcad.com/library/zmr250-dxf-files-for-cnc-milling-1).
+
+I didn’t want to modify anything yet so I just printed it like that and fit the components in.
+
+Then I would check what needs to be modified
+
+### Laserwork
+After cutting the design on the laser and assembling it this is what I was left with.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image15.png)
+
+As you can see it’s an absolute ```ESC mess``` out there .. 
+
+But we won’t have that problem anymore since we’re stepping over from individual ```ESC``` to a ```4-ESC``` board.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image23.png)
+
+The board looks something like this.
+
+### Multiple problems
+At first I thought the laserwork was good enough, until I realized: ```propellers```
+
+The space between the legs of the drones were not enough for the ```10 inch``` propellers.
+
+But why 10 inch? You may ask. Well I have no reason, those are the only propellers we had at the lab so I just accepted the fact for now and continued.
+
+So what did we have to do to make enough space for the propellers? We had to extend the design, so it’s time to modify the design. I imported it in Inkscape and after some time I came up with a plan: extend the legs from ```12 CM``` to ```15 CM``` instead of extending the frame itself.
+
+So I did.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image13.png)
+
+By cutting a little piece off of the middle part of the leg, I managed to create an extender like this.
+
+All put together it looks like this: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image11.png)
+
+It’s a bit wanky and all but I hope that It'll work.
+
+
+But then .. 
+
+
+That's when I saw my first problem .. The laser ```cuts along red lines```, and ```engraves any other color```.
+
+So you could say to make the whole design red then right? No, it’ll take the stripes and cut along that. “But then just leave the stripes black and the outline red”, well that works but then it's not that strong anymore.
+
+
+### Solving the first problem
+
+So how do we solve that? Well there is a way, by using this feature called ```nodes```.
+
+Press this:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image3.png)
+
+(the icon ```next``` to the mouse icon)
+
+Then simply select the whole design (grouped), then press on this icon to break all nodes:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image5.png)
+
+Breaking all nodes basically ```ungroups``` the design, making it into small pieces, and yes, that's how we can erase (delete) the lines professionally.
+
+And after all that, group the design and you’re done!
+
+So after the print, the propellers fit .. but there was only one problem …
+
+They only fit ```vertically```, not ```horizontally```. So on the ```x-axis``` they weren't good yet.
+
+So now we actually have to modify the main plate.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image14.png)
+
+###### They’re too short.
+
+
+### The first concept
+
+So now it’s time to create a ```new body design```. I’m working on the ```bottom plate```.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image20.png)
+
+I ended up settling with this, and also added a little text to indicate which version I’m working with.
+
+But then again, it almost works but there’s very ```little space``` between the propellers .. and it’s starting to look ```bulky``` too.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image17.png)
+
+### The second concept
+
+So now that we know what we have to do, we can start ```editing``` it again.
+
+I first started off by removing the ```bulkiness```:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image7.png)
+
+But that did not help, after the print I tested it and it seems like I removed a bit ```too much``` and the length wasn’t correct either.
+
+Then I took a break from it and started focussing on the UI and some other projects 
+(because it was bootcamp December break).
+
+During the break I picked it up and started again.
+
+### The final concept
+
+In the final concept I really checked all ```measurements``` and checked if they matched with all the ```components``` and if the area space was enough, and then I waited ‘till the lab was open again to print.
+
+After the print, it seemed like everything was gonna fit, and it did eventually. All components fit in the frame and everything was looking pretty neat.
+
+And most importantly, there was enough space between the propellers.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image18.png)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image10.png)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image19.png)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image9.png)
+
+
+## Electronics Design
+
+During electronics design the ```PCB miller``` broke down, so that didn't continue, but I did solder everything on a ```perfboard```, including the ESC controller and all sensors (most).
+
+### Components 
+
+First I started soldering the pins on to put the ```ESP32S2 DEV2 MODULE```, ```arduino NANO``` and the ```MPU 9250``` on.
+
+Then I started soldering wires for the connections of the ```ESP``` and the ```NANO```.
+
+And after that I started making the connections of the ESC board to the nano, and then the power management system (power rails)
+
+The power rails consist of 3 rails:
+```5V``` rail
+```3V``` rail
+```GND``` rail
+
+And after all that, I finally did the ```MPU``` connections.
+
+But wait, we’re not done yet.
+
+After all that I started soldering on the ESC board (```BLHELI_S```) for the power and ground wires and the signal wires for the motors.
+
+And then I finally attached it to the ```perfboard``` using screws, a screwdriver and my hands (obviously).
+
+These are the final results:
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image4.png)
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image8.png)
+
+My uh .. phone died so I had to use my laptop’s webcam..
+
+### Soldering the motor cables
+
+Previously I said the next step was to solder the motor cables, well I did, the images were the prototype before that.
+
+If you look at ```image 2``` you will see those little brown spots on the black board. Those are the ports for the motors on the ESC board.
+
+After some soldering and more soldering I managed to do it: 
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image1.png)
+
+And I also managed to shorten the cable structure by winding the wires up like up here.
+
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image2.png)
+
 # Interface & Application programming
 
 ======
