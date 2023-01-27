@@ -276,6 +276,694 @@ And I also managed to shorten the cable structure by winding the wires up like u
 
 ![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image2.png)
 
+## Embedded Coding
+There is a finished SkyCamFirmware code, written in arduino c++ for ESP32.
+
+And in this chapter I will explain that code.
+
+Ofcourse I wont put the full code snippets here, I will explain a piece of them and link the rest to an ```.ino``` file on ```github```
+
+### ESP32s2
+
+when first opening the .ino file you will see that we are first ..
+
+#### Declaring Libraries
+
+```c++
+#include <Arduino.h>
+#include <WiFi.h>
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+#include "SPIFFS.h"
+#include <Arduino_JSON.h>
+
+#include <analogWrite.h>
+#include <ESP32Tone.h>
+#include <ESP32PWM.h>
+#include <Wire.h>
+```
+
+First we are declaring our libraries, because we need 'em.
+
+then we need to declare the variables.
+
+#### Declaring the variables
+There are a bunch of variables, so Ill split them up in parts:
+
+```c++
+const byte L_F_pin = 26; //left front motor
+const byte L_B_pin = 15; //left back motor 21
+const byte R_F_pin = 4; //right front motor 33
+const byte R_B_pin = 5; //right back motor 34
+
+const byte pwmPin1 = 0;
+const byte pwmPin2 = 0;
+const byte pwmPin3 = 0;
+const byte pwmPin4 = 0;
+
+const byte ch1Pin = 8; // Roll RC channel 1
+const byte ch2Pin = 9; // Pitch RC channel 2
+const byte ch3Pin = 10; // Throttle channel 3
+const byte ch4Pin = 12; // Yaw RC channel 4
+```
+
+First we have our motor pins, from these pins we will send the PWM values from arduino to ESP. In this case we're talking about the esp's pins.
+
+```c++
+//To store the 1000us to 2000us value we create variables and store each channel
+int input_YAW; //In my case channel 4 of the receiver and pin D12 of arduino
+int input_PITCH; //In my case channel 2 of the receiver and pin D9 of arduino
+int input_ROLL; //In my case channel 1 of the receiver and pin D8 of arduino
+int input_THROTTLE; //In my case channel 3 of the receiver and pin D10 of arduino
+
+// We create variables for the time width values of each PWM input signal
+unsigned long counter_1, counter_2, counter_3, counter_4, current_count;
+
+// We create 4 variables to stopre the previous value of the input signal (if LOW or HIGH)
+byte last_CH1_state, last_CH2_state, last_CH3_state, last_CH4_state;
+```
+
+Then we create the GYRO values,ranging from ```1000us``` to ```2000us``` ... so lowest is 1000 and highest is 2000, so hovering should be around ```1500```.
+
+```c++
+const char * wifi_network_ssid = "SSID_";
+const char * wifi_network_password = "_PW";
+
+
+const char *soft_ap_ssid = "SKYCAM-AP";
+const char *soft_ap_password = "blueberryPi";
+```
+
+Here we basically declare the values for connecting to the internet and setting up the soft AP (access point, from where you can connect to the drone itself).
+
+```c++
+AsyncWebServer server(80);
+
+AsyncWebSocket ws("/ws");
+```
+
+..And then we set up a websocket server on port ```80```.
+
+```c++
+String message = "";
+String sliderValue1 = "0";
+String sliderValue2 = "0";
+String sliderValue3 = "0";
+String sliderValue4 = "0";
+
+int dutyCycle1;
+int dutyCycle2;
+int dutyCycle3;
+int dutyCycle4;
+
+const int freq = 5000;
+const int ledChannel1 = 0;
+const int ledChannel2 = 1;
+const int ledChannel3 = 2;
+const int ledChannel4 = 3;
+
+const int resolution = 8;
+```
+
+Here we set our message variable, to store data that comes in from websocket clients.
+
+I'm not using the sliderPWM and the ledChannel variables but I just keep them incase I'll need them one day.
+
+And then we set our resolution and PWM frequency properties.
+
+#### Initializing
+
+```c++
+JSONVar sliderValues;
+
+String getSliderValues() {
+  sliderValues["sliderValue1"] = String(sliderValue1);
+  sliderValues["sliderValue2"] = String(sliderValue2);
+  sliderValues["sliderValue3"] = String(sliderValue3);
+  sliderValues["sliderValue4"] = String(sliderValue4);
+  String jsonString = JSON.stringify(sliderValues);
+  return jsonString;
+}
+```
+
+For the incase slider function, because in my UI I have a slider for increasing the LED brightness, so that's why I'll keep it.
+
+We create a JSON object in c++ using the ```ArduinoJSON``` library.
+
+```c++
+void initFS() {
+  if (!SPIFFS.begin()) {
+    Serial.println("An error has occurred while mounting SPIFFS");
+  } else {
+    Serial.println("SPIFFS mounted successfully");
+  }
+}
+```
+
+Then we run a check to see if ```SPIFFS``` is installed, if yes then we mount it. we need the spiffs for memory and image writing for the ESP32.
+
+```c++
+void initWiFi() {
+  WiFi.mode(WIFI_MODE_APSTA);
+  WiFi.softAP(soft_ap_ssid, soft_ap_password);
+
+  Serial.print("SKYCAM IP as soft AP: ");
+  Serial.println(WiFi.softAPIP());
+
+  WiFi.begin(wifi_network_ssid, wifi_network_password);
+  Serial.println("Connecting to WiFi..");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print('.');
+    delay(1000);
+  }
+
+  Serial.print("SKYCAM IP on the WiFi network: ");
+  Serial.println(WiFi.localIP());
+}
+
+void notifyClients(String sliderValues) {
+  ws.textAll(sliderValues);
+}
+```
+
+The first function Initializes the Wi-fi connection, A.K.A start the Wifi connection, or connect to the network and set up the soft AP.
+
+The second function notifies the clients, sort of like a pong function, but instead it sends slidervalues.
+
+#### Handling websocket messages
+
+```c++
+void handleWebSocketMessage(void * arg, uint8_t * data, size_t len) {
+  AwsFrameInfo * info = (AwsFrameInfo * ) arg;
+  if (info -> final && info -> index == 0 && info -> len == len && info -> opcode == WS_TEXT) {
+    data[len] = 0;
+    message = (char * ) data;
+    Serial.println(message);
+    if (message.indexOf("YPRT") >= 0) {
+      input_YAW = message.substring(5, 9).toInt();
+      input_PITCH = message.substring(10, 14).toInt();
+      input_ROLL = message.substring(15, 19).toInt();
+      input_THROTTLE = message.substring(20, 24).toInt();
+    }
+    if (message.indexOf("1s") >= 0) {
+      sliderValue1 = message.substring(2);
+      dutyCycle1 = map(sliderValue1.toInt(), 0, 100, 0, 255);
+      Serial.println(dutyCycle1);
+      Serial.print(getSliderValues());
+      notifyClients(getSliderValues());
+    }
+    if (message.indexOf("2s") >= 0) {
+      sliderValue2 = message.substring(2);
+      dutyCycle2 = map(sliderValue2.toInt(), 0, 100, 0, 255);
+      Serial.println(dutyCycle2);
+      Serial.print(getSliderValues());
+      notifyClients(getSliderValues());
+    }
+    if (message.indexOf("3s") >= 0) {
+      sliderValue3 = message.substring(2);
+      dutyCycle3 = map(sliderValue3.toInt(), 0, 100, 0, 255);
+      Serial.println(dutyCycle3);
+      Serial.print(getSliderValues());
+      notifyClients(getSliderValues());
+    }
+    if (strcmp((char * ) data, "getValues") == 0) {
+      notifyClients(getSliderValues());
+    }
+  }
+}
+```
+
+Ok, this function is a bit complicated but I'll explain it. This function gets explained by the name, it handles all incoming websocket messages.
+
+We first check with an if statement if theres context.
+
+Then we set the data at length to 0.
+
+Ok, now we're gonna use the variable ```message``` from before to save the data. We use ```char *``` to indicate that the data is supposed to be a string. ```char *``` means string. We print the message.
+
+```message.indexOf``` means litterally "if the message contains ...", in our case the text "YPRT" standing for yaw, pitch, roll, throttle. So if that is the case we substring it to get each individual data piece. Remember the 1000 - 2000 mess? that's the data.
+
+And finally we transform the values into an ```Int``` to be used later for the motors.
+
+The other statements I don't use but they basically do the same (only a bit different :/).
+
+```c++
+void onEvent(AsyncWebSocket * server, AsyncWebSocketClient * client, AwsEventType type, void * arg, uint8_t * data, size_t len) {
+  switch (type) {
+    case WS_EVT_CONNECT:
+      Serial.printf("WebSocket client #%u connected from %s\n", client -> id(), client -> remoteIP().toString().c_str());
+      break;
+    case WS_EVT_DISCONNECT:
+      Serial.printf("WebSocket client #%u disconnected\n", client -> id());
+      break;
+    case WS_EVT_DATA:
+      handleWebSocketMessage(arg, data, len);
+      break;
+    case WS_EVT_PONG:
+    case WS_EVT_ERROR:
+      break;
+  }
+}
+```
+
+This code checks if clients connect, get their IP and logs it. It does the same when they disconnect. This is more to manage users. Because we are building a drone we cannot have multiple people connect and control the drone, so this would be very useful to limit to one user.
+
+```c++
+void initWebSocket() {
+  ws.onEvent(onEvent);
+  server.addHandler( & ws);
+}
+```
+Release the websocket.
+
+#### Gyro code
+
+I copy pasted the ```gyro``` code and It worked, so I will not explain it because its also really long, and you could say we actually do the math.
+
+[here](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/ino/SkyCamFirmware.ino)'s the link to the full code if you're still interested, the code also gets sent at the end of this document.
+
+The gyro code just gets the x, y values of the MPU 9250, and uses a library called PID to stabilize the drone based on those values.
+
+#### Void setup
+
+```c++
+void setup() {
+  Serial.begin(115200);
+  initFS();
+  initWiFi();
+  initWebSocket();
+
+  // Web Server Root URL
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request -> send(SPIFFS, "/index.html", "text/html"); // add login server + fe
+  });
+  server.serveStatic("/", SPIFFS, "/");
+  // Start server
+  server.begin();
+
+  // Setup utility PWM
+  pinMode(pwmPin1, OUTPUT);
+  pinMode(pwmPin2, OUTPUT);
+  pinMode(pwmPin3, OUTPUT);
+  pinMode(pwmPin4, OUTPUT);
+  // configure PWM channels / functionalitites
+  ledcSetup(ledChannel1, freq, resolution);
+  ledcSetup(ledChannel2, freq, resolution);
+  ledcSetup(ledChannel3, freq, resolution);
+  ledcSetup(ledChannel4, freq, resolution);
+  // attach the channel to the GPIO to be controlled
+  ledcAttachPin(pwmPin1, ledChannel1);
+  ledcAttachPin(pwmPin2, ledChannel2);
+  ledcAttachPin(pwmPin3, ledChannel3);
+  ledcAttachPin(pwmPin4, ledChannel4);
+
+  // RC controller Interrupts
+  attachInterrupt(ch1Pin, ISR, CHANGE);
+  attachInterrupt(ch2Pin, ISR, CHANGE);
+  attachInterrupt(ch3Pin, ISR, CHANGE);
+  attachInterrupt(ch4Pin, ISR, CHANGE);
+
+  pinMode(actLed, OUTPUT);
+  digitalWrite(actLed, 0);
+
+  // Attach ESC / Motor servos
+  //  L_F_prop.attach(L_F_pin, 1000, 2000, 500); //left front motor
+  //  L_B_prop.attach(L_B_pin, 1000, 2000, 500); //left back motor
+  //  R_F_prop.attach(R_F_pin, 1000, 2000, 500); //right front motor
+  //  R_B_prop.attach(R_B_pin, 1000, 2000, 500); //right back motor
+  //  /*in order to make sure that the ESCs won't enter into config mode
+  //   *I send a 1000us pulse to each ESC.*/
+  //  L_F_prop.writeMicroseconds(1000);
+  //  L_B_prop.writeMicroseconds(1000);
+  //  R_F_prop.writeMicroseconds(1000);
+  //  R_B_prop.writeMicroseconds(1000);
+  // theo
+  analogWrite(L_F_pin, 0);
+  analogWrite(L_B_pin, 0);
+  analogWrite(R_F_pin, 0);
+  analogWrite(R_F_pin, 0);
+
+  // Setup I2C the Acceleromater
+  Wire.begin(); //begin the wire comunication
+  Wire.beginTransmission(0x68); //begin, Send the slave adress (in this case 68)
+  Wire.write(0x6B); //make the reset (place a 0 into the 6B register)
+  Wire.write(0x00);
+  Wire.endTransmission(true); //end the transmission
+
+  Wire.beginTransmission(0x68); //begin, Send the slave adress (in this case 68)
+  Wire.write(0x1B); //We want to write to the GYRO_CONFIG register (1B hex)
+  Wire.write(0x10); //Set the register bits as 00010000 (100dps full scale)
+  Wire.endTransmission(true); //End the transmission with the gyro
+
+  Wire.beginTransmission(0x68); //Start communication with the address found during search.
+  Wire.write(0x1C); //We want to write to the ACCEL_CONFIG register (1A hex)
+  Wire.write(0x10); //Set the register bits as 00010000 (+/- 8g full scale range)
+  Wire.endTransmission(true);
+
+  Serial.begin(115200);
+  delay(1000);
+  timenow = millis(); //Start counting time in milliseconds
+
+  /*Here we calculate the gyro data error before we start the loop
+     I make the mean of 200 values, that should be enough*/
+  if (gyro_error == 0) {
+    for (int i = 0; i < 200; i++) {
+      Wire.beginTransmission(0x68); //begin, Send the slave adress (in this case 68)
+      Wire.write(0x43); //First adress of the Gyro data
+      Wire.endTransmission(false);
+      Wire.requestFrom(0x68, 4, true); //We ask for just 4 registers
+
+      Gyr_rawX = Wire.read() << 8 | Wire.read(); //Once again we shif and sum
+      Gyr_rawY = Wire.read() << 8 | Wire.read();
+
+      /*---X---*/
+      Gyro_raw_error_x = Gyro_raw_error_x + (Gyr_rawX / 32.8);
+      /*---Y---*/
+      Gyro_raw_error_y = Gyro_raw_error_y + (Gyr_rawY / 32.8);
+      if (i == 199) {
+        Gyro_raw_error_x = Gyro_raw_error_x / 200;
+        Gyro_raw_error_y = Gyro_raw_error_y / 200;
+        gyro_error = 1;
+      }
+    }
+  } //end of gyro error calculation
+
+  /*Here we calculate the acc data error before we start the loop
+     I make the mean of 200 values, that should be enough*/
+  if (acc_error == 0) {
+    for (int a = 0; a < 200; a++) {
+      Wire.beginTransmission(0x68);
+      Wire.write(0x3B); //Ask for the 0x3B register- correspond to AcX
+      Wire.endTransmission(false);
+      Wire.requestFrom(0x68, 6, true);
+
+      Acc_rawX = (Wire.read() << 8 | Wire.read()) / 4096.0; //each value needs two registres
+      Acc_rawY = (Wire.read() << 8 | Wire.read()) / 4096.0;
+      Acc_rawZ = (Wire.read() << 8 | Wire.read()) / 4096.0;
+
+      /*---X---*/
+      Acc_angle_error_x = Acc_angle_error_x + ((atan((Acc_rawY) / sqrt(pow((Acc_rawX), 2) + pow((Acc_rawZ), 2))) * rad_to_deg));
+      /*---Y---*/
+      Acc_angle_error_y = Acc_angle_error_y + ((atan(-1 * (Acc_rawX) / sqrt(pow((Acc_rawY), 2) + pow((Acc_rawZ), 2))) * rad_to_deg));
+
+      if (a == 199) {
+        Acc_angle_error_x = Acc_angle_error_x / 200;
+        Acc_angle_error_y = Acc_angle_error_y / 200;
+        acc_error = 1;
+      }
+    }
+  } //end of acc error calculation
+} //end of setup loop
+```
+
+In the void setup we do basic stuff like declare ```Serial```.
+
+And then we call the Initialize function from earlier.
+
+Then we set the pinMode of the motor pins, and the resolution of the channels.
+
+The setup runs once, so then we launch the app by sending index.html to the hosting of the ESP32
+
+And the rest is more gyro error calculation, that means correcting the values a bit .. or in extremely short words: ```Tweaking```
+
+#### Void loop
+
+```c++
+void loop() {
+  ///////////////////////////// R E A D - I M U /////////////////////////////////////
+  timePrev = timenow; // the previous time is stored before the actual time read
+  timenow = millis(); // actual time read
+  elapsedTime = (timenow - timePrev) / 1000;
+  /*The tiemStep is the time that elapsed since the previous loop.
+    This is the value that we will use in the formulas as "elapsedTime"
+    in seconds. We work in ms so we have to divide the value by 1000
+    to obtain seconds*/
+  /*Reed the values that the accelerometre gives.
+     We know that the slave adress for this IMU is 0x68 in
+     hexadecimal. For that in the RequestFrom and the
+     begin functions we have to put this value.*/
+  //////////////////////////////////////Gyro read/////////////////////////////////////
+  Wire.beginTransmission(0x68); //begin, Send the slave adress (in this case 68)
+  Wire.write(0x43); //First adress of the Gyro data
+  Wire.endTransmission(false);
+  Wire.requestFrom(0x68, 4, true); //We ask for just 4 registers
+  Gyr_rawX = Wire.read() << 8 | Wire.read(); //Once again we shif and sum
+  Gyr_rawY = Wire.read() << 8 | Wire.read();
+  /*Now in order to obtain the gyro data in degrees/seconds we have to divide first
+    the raw value by 32.8 because that's the value that the datasheet gives us for a 1000dps range*/
+  /*---X---*/
+  Gyr_rawX = (Gyr_rawX / 32.8) - Gyro_raw_error_x;
+  /*---Y---*/
+  Gyr_rawY = (Gyr_rawY / 32.8) - Gyro_raw_error_y;
+  /*Now we integrate the raw value in degrees per seconds in order to obtain the angle
+     If you multiply degrees/seconds by seconds you obtain degrees */
+  /*---X---*/
+  Gyro_angle_x = Gyr_rawX * elapsedTime;
+  /*---X---*/
+  Gyro_angle_y = Gyr_rawY * elapsedTime;
+
+  //////////////////////////////////////Acc read/////////////////////////////////////
+  Wire.beginTransmission(0x68); //begin, Send the slave adress (in this case 68)
+  Wire.write(0x3B); //Ask for the 0x3B register- correspond to AcX
+  Wire.endTransmission(false); //keep the transmission and next
+  Wire.requestFrom(0x68, 6, true); //We ask for next 6 registers starting withj the 3B
+  /*We have asked for the 0x3B register. The IMU will send a brust of register.
+    The amount of register to read is specify in the requestFrom function.
+    In this case we request 6 registers. Each value of acceleration is made out of
+    two 8bits registers, low values and high values. For that we request the 6 of them
+    and just make then sum of each pair. For that we shift to the left the high values
+    register (<<) and make an or (|) operation to add the low values.
+    If we read the datasheet, for a range of+-8g, we have to divide the raw values by 4096*/
+  Acc_rawX = (Wire.read() << 8 | Wire.read()) / 4096.0; //each value needs two registres
+  Acc_rawY = (Wire.read() << 8 | Wire.read()) / 4096.0;
+  Acc_rawZ = (Wire.read() << 8 | Wire.read()) / 4096.0;
+  /*Now in order to obtain the Acc angles we use euler formula with acceleration values
+    after that we substract the error value found before*/
+  /*---X---*/
+  Acc_angle_x = (atan((Acc_rawY) / sqrt(pow((Acc_rawX), 2) + pow((Acc_rawZ), 2))) * rad_to_deg) - Acc_angle_error_x;
+  /*---Y---*/
+  Acc_angle_y = (atan(-1 * (Acc_rawX) / sqrt(pow((Acc_rawY), 2) + pow((Acc_rawZ), 2))) * rad_to_deg) - Acc_angle_error_y;
+
+  //////////////////////////////////////Total angle and filter/////////////////////////////////////
+  /*---X axis angle---*/
+  Total_angle_x = 0.98 * (Total_angle_x + Gyro_angle_x) + 0.02 * Acc_angle_x;
+  /*---Y axis angle---*/
+  Total_angle_y = 0.98 * (Total_angle_y + Gyro_angle_y) + 0.02 * Acc_angle_y;
+
+  /*///////////////////////////P I D///////////////////////////////////*/
+  roll_desired_angle = map(input_ROLL, 1000, 2000, -10, 10);
+  pitch_desired_angle = map(input_PITCH, 1000, 2000, -10, 10);
+
+  /*First calculate the error between the desired angle and
+    the real measured angle*/
+  roll_error = Total_angle_y - roll_desired_angle;
+  pitch_error = Total_angle_x - pitch_desired_angle;
+  /*Next the proportional value of the PID is just a proportional constant
+    multiplied by the error*/
+  roll_pid_p = roll_kp * roll_error;
+  pitch_pid_p = pitch_kp * pitch_error;
+  /*The integral part should only act if we are close to the
+    desired position but we want to fine tune the error. That's
+    why I've made a if operation for an error between -2 and 2 degree.
+    To integrate we just sum the previous integral value with the
+    error multiplied by  the integral constant. This will integrate (increase)
+    the value each loop till we reach the 0 point*/
+  if (-3 < roll_error < 3) {
+    roll_pid_i = roll_pid_i + (roll_ki * roll_error);
+  }
+  if (-3 < pitch_error < 3) {
+    pitch_pid_i = pitch_pid_i + (pitch_ki * pitch_error);
+  }
+  /*The last part is the derivate. The derivate acts upon the speed of the error.
+    As we know the speed is the amount of error that produced in a certain amount of
+    time divided by that time. For taht we will use a variable called previous_error.
+    We substract that value from the actual error and divide all by the elapsed time.
+    Finnaly we multiply the result by the derivate constant*/
+  roll_pid_d = roll_kd * ((roll_error - roll_previous_error) / elapsedTime);
+  pitch_pid_d = pitch_kd * ((pitch_error - pitch_previous_error) / elapsedTime);
+  /*The final PID values is the sum of each of this 3 parts*/
+  roll_PID = roll_pid_p + roll_pid_i + roll_pid_d;
+  pitch_PID = pitch_pid_p + pitch_pid_i + pitch_pid_d;
+  /*We know taht the min value of PWM signal is 1000us and the max is 2000. So that
+    tells us that the PID value can/s oscilate more than -1000 and 1000 because when we
+    have a value of 2000us the maximum value taht we could substract is 1000 and when
+    we have a value of 1000us for the PWM signal, the maximum value that we could add is 1000
+    to reach the maximum 2000us. But we don't want to act over the entire range so -+400 should be enough*/
+  if (roll_PID < -400) {
+    roll_PID = -400;
+  }
+  if (roll_PID > 400) {
+    roll_PID = 400;
+  }
+  if (pitch_PID < -400) {
+    pitch_PID = -400;
+  }
+  if (pitch_PID > 400) {
+    pitch_PID = 400;
+  }
+
+  /*Finnaly we calculate the PWM width. We sum the desired throttle and the PID value*/
+  pwm_R_F = 115 + input_THROTTLE - roll_PID - pitch_PID;
+  pwm_R_B = 115 + input_THROTTLE - roll_PID + pitch_PID;
+  pwm_L_B = 115 + input_THROTTLE + roll_PID + pitch_PID;
+  pwm_L_F = 115 + input_THROTTLE + roll_PID - pitch_PID;
+
+  /*Once again we map the PWM values to be sure that we won't pass the min
+    and max values. Yes, we've already maped the PID values. But for example, for
+    throttle value of 1300, if we sum the max PID value we would have 2300us and
+    that will mess up the ESC.*/
+  //Right front
+  if (pwm_R_F < 1100) {
+    pwm_R_F = 1100;
+  }
+  if (pwm_R_F > 2000) {
+    pwm_R_F = 2000;
+  }
+
+  //Left front
+  if (pwm_L_F < 1100) {
+    pwm_L_F = 1100;
+  }
+  if (pwm_L_F > 2000) {
+    pwm_L_F = 2000;
+  }
+
+  //Right back
+  if (pwm_R_B < 1100) {
+    pwm_R_B = 1100;
+  }
+  if (pwm_R_B > 2000) {
+    pwm_R_B = 2000;
+  }
+
+  //Left back
+  if (pwm_L_B < 1100) {
+    pwm_L_B = 1100;
+  }
+  if (pwm_L_B > 2000) {
+    pwm_L_B = 2000;
+  }
+
+  roll_previous_error = roll_error; //Remember to store the previous error.
+  pitch_previous_error = pitch_error; //Remember to store the previous error.
+
+  /*
+    Serial.print("RF: ");
+    Serial.print(pwm_R_F);
+    Serial.print("   |   ");
+    Serial.print("RB: ");
+    Serial.print(pwm_R_B);
+    Serial.print("   |   ");
+    Serial.print("LB: ");
+    Serial.print(pwm_L_B);
+    Serial.print("   |   ");
+    Serial.print("LF: ");
+    Serial.print(pwm_L_F);
+
+    Serial.print("   |   ");
+    Serial.print("Xº: ");
+    Serial.print(Total_angle_x);
+    Serial.print("   |   ");
+    Serial.print("Yº: ");
+...
+```
+
+Three dots because it was too long. check the function in the .ino file.
+
+The void loop just loops and corrects the values of the gyro (error).
+
+It calculates the pitch roll and yaw and formats it to ausable value, and we also print it.
+
+```c++
+  //Left back
+  if (pwm_L_B < 1100) {
+    pwm_L_B = 1100;
+  }
+  if (pwm_L_B > 2000) {
+    pwm_L_B = 2000;
+  }
+```
+
+In this piece you can see the correction and formatting a little bit.
+
+### Arduino nano
+
+There's also the ```arduino nano``` part, in the same folder as the SkyCamFirmware.ino, [here](https://github.com/Keshav11-coder/Keshav11-coder.github.io/blob/main/bootcamp2022/ino/bldc_arduino.ino)
+
+#### Including libraries and setting up
+
+```c++
+#include <Servo.h>
+
+Servo ESC;
+Servo L_F_prop;
+Servo L_B_prop;
+Servo R_F_prop;
+Servo R_B_prop;
+```
+
+First we include the ```Servo.h``` library.
+
+### Declaring variables
+
+We declare some servos (4).
+
+```c++
+int escval1;
+int escval2;
+int escval3;
+int escval4;
+```
+
+We also create some variables to store the values read from the ESP32.
+
+Then ..
+
+#### Void setup
+
+```c++
+void setup() {
+  Serial.begin(9600);
+  L_F_prop.attach(3, 1000, 2000); // (pin, min pulse width, max pulse width in microseconds)
+  L_B_prop.attach(5, 1000, 2000);
+  R_F_prop.attach(6, 1000, 2000);
+  R_B_prop.attach(9, 1000, 2000);
+}
+```
+In the void setup we attach the servos to some PWM pins (like you would with normal servos).
+
+#### Void loop
+
+```c++
+void loop() {
+  escval1 = analogRead(A0);
+  escval2 = analogRead(A1);
+  escval3 = analogRead(A2);
+  escval4 = analogRead(A3);
+  escval1 = map(escval1, 0, 1023, 1000, 2000);
+  escval2 = map(escval2, 0, 1023, 1000, 2000);
+  escval3 = map(escval3, 0, 1023, 1000, 2000);
+  escval4 = map(escval4, 0, 1023, 1000, 2000);
+  Serial.println(escval1);
+  Serial.println(escval2);
+  Serial.println(escval3);
+  Serial.println(escval4);
+  L_F_prop.writeMicroseconds(escval1);
+  L_B_prop.writeMicroseconds(escval2);
+  R_F_prop.writeMicroseconds(escval3);
+  R_B_prop.writeMicroseconds(escval4);
+  delay(100);
+}
+```
+
+Ok, in the void loop we set the ESC values from before to the values we read from the ESP32.
+
+Then we map those values, because they're 0 - 1023. We map them (reformat) them to 1000 - 2000.
+
+Lastly we print those values and write them to the ESC's, which will eventually be written to the motors.
+
+And that was embedded coding.
+
 # Interface & Application programming
 
 ======
