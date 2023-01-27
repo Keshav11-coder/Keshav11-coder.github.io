@@ -22,7 +22,7 @@ This February there was one of those competitions, hack-O-mation, a 6 month prog
 
 Ok so finally we got to the naming of our drone, we named it .. 
 
-```SkyCam```
+## SkyCam
 ##### Your Eye In The Sky
 
 ![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image21.jpg)
