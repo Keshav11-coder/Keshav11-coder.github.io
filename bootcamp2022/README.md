@@ -23,9 +23,9 @@ This February there was one of those competitions, hack-O-mation, a 6 month prog
 Ok so finally we got to the naming of our drone, we named it .. 
 
 ```SkyCam```
-Your Eye In The Sky
+##### Your Eye In The Sky
 
-![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image21.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image21.jpg)
 
 ## Well what does it do?
 Now that we know how it started, what was the original plan / purpose of ```SkyCam```?
@@ -63,7 +63,7 @@ Yes, these are sketches on paper. This was almost how the front part of my drone
 
 .. this was the approach I was going for with the gimbal:
 
-![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image16.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image16.jpg)
 
 That’s almost what It would look like, one motor in the ```y axis``` and the other doing the ```x```.
 
@@ -72,7 +72,7 @@ That’s almost what It would look like, one motor in the ```y axis``` and the o
 ### Back 
 This was the first prototype for the back:
 
-![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image22.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image22.jpg)
 
 [figure 1] : 
 I was going for a base motherboard, with substations, like an ultrasonic station that handles ultrasonic sensor cables .. but making your own pcb was a lot harder than I thought, so I just went with the main pcb including our basic esp32s2 and arduino nano together, and separately the raspberry pi 3 with the camera. 
@@ -86,7 +86,7 @@ I was going for a base motherboard, with substations, like an ultrasonic station
 ### Frame
 The last sketch was about the frame. What it will look like:
 
-![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image12.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/fpimg/image12.jpg)
 
 I was thinking of instead making the wings different in length, I make them all equal.
 
@@ -319,7 +319,7 @@ I already had nodeJS installed from 2021, when we were flying an AR drone with i
 ## Upgrading my NodeJS
 As I already said, I already had nodeJS for some time and it was a pretty old version. So I downloaded the latest version 18: 
 
-![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image6.png)
+![](https://raw.githubusercontent.com/Keshav11-coder/Keshav11-coder.github.io/main/bootcamp2022/images/image6.jpg)
 
 Installed it, and it was good to go.
 
