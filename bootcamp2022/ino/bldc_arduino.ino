@@ -11,10 +11,10 @@ Servo L_B_prop;
 Servo R_F_prop;
 Servo R_B_prop;
 
-int escval1 = analogRead(A0);
-int escval2 = analogRead(A1);
-int escval3 = analogRead(A2);
-int escval4 = analogRead(A3);
+int escval1;
+int escval2;
+int escval3;
+int escval4;
 
 void setup() {
   Serial.begin(9600);
