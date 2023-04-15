@@ -1,0 +1,235 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bgColor: rgb(0, 0, 0);
+        --htextColor: rgb(255, 255, 255);
+        --clearColor: rgb(180, 47, 47);
+        --clearTColor: rgb(180, 47, 47);
+        --SdPurple: #4029a9de;
+        --SdPurpleAlt: #5533ebde;
+        --borderSize: 3px;
+        --ginColor: transparent;
+
+        --sboxBg: transparent;
+        --siBg: transparent;
+
+        --siCfb: white;
+        --siCtw: white;
+        --siCig: white;
+
+        --placeHC: white;
+
+        --skipC: white;
+        --forwC: var(--SdPurpleAlt);
+    }
+}
+
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bgColor: rgb(255, 255, 255);
+        --htextColor: rgb(0, 0, 0);
+        --clearColor: rgb(180, 47, 47);
+        --clearTColor: rgb(180, 47, 47);
+        --SdPurple: #4029a9de;
+        --SdPurpleAlt: var(--SdPurple);
+        --borderSize: 3px;
+        --ginColor: transparent;
+
+        --sboxBg: transparent;
+        --siBg: transparent;
+
+        --siCfb: black;
+        --siCtw: black;
+        --siCig: black;
+
+        --placeHC: rgb(0, 0, 0);
+
+        --skipC: rgb(0, 0, 0);
+        --forwC: var(--SdPurple);
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+
+    /* For desktop: */
+
+    .document {
+        background-color: var(--bgColor);
+        width: 100%;
+        height: 100%;
+    }
+
+    .container-1 {
+        margin-top: 5%;
+    }
+
+    .qnamed {
+        width: 80%;
+        height: 20%;
+    }
+
+    .ginput {
+        font-size: 2vw;
+    }
+
+    .a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        transition: ease 1s;
+    }
+
+    .wrapper {
+        height: 75%;
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        justify-self: center;
+        flex-direction: column;
+        background-color: rgb(0, 0, 0, 0.1);
+        border-radius: 12px;
+        transition: ease 1s;
+    }
+
+    .wrapperf {
+        transform: rotateY(180deg);
+    }
+
+    .af {
+        transform: rotateY(-180deg);
+    }
+
+    .wrapperfb {
+        transform: rotateY(0deg);
+    }
+
+    .afb {
+        transform: rotateY(0deg);
+    }
+
+    .t-forw {
+        width: 90%;
+        height: 15%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: row;
+        align-self: center;
+        margin-top: 35%;
+    }
+
+    ::placeholder {
+        font-size: 1.2vw;
+    }
+
+    .btn {
+        width: 20%;
+        height: 60%;
+        border-radius: 6px;
+        margin-right: 2%;
+    }
+
+
+
+    .ppl {
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-size: 1.0vw;
+        color: #4029a9de;
+    }
+
+    .hello-text {
+        font-size: 8.5vw;
+    }
+
+    .bl {
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-size: 1.0vw;
+        color: black;
+    }
+
+    .cnl {
+        display: none;
+    }
+
+    .cct {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .social {
+        width: 20%;
+        height: 60%;
+        border-radius: 18px;
+        background-color: rgba(0, 0, 0, 0.1);
+        margin-bottom: 1%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .cred {
+        opacity: 0.5;
+        font-size: 1vw;
+    }
+
+    .fa {
+        padding: 20px;
+        padding-bottom: 3%;
+        width: 7%;
+        text-align: center;
+        text-decoration: none;
+        margin: 4%;
+        border-radius: 12px;
+        transition: ease-in-out 0.2s
+    }
+
+    .fa-facebook {
+        background: black;
+        color: white;
+        opacity: 0.55;
+    }
+
+    .fa-facebook:hover {
+        background: #4267B2;
+        color: white;
+    }
+
+    .fa-twitter {
+        background: black;
+        color: white;
+        opacity: 0.55;
+    }
+
+    .fa-twitter:hover {
+        background: #1DA1F2;
+        color: white;
+    }
+
+    .fa-instagram {
+        background: black;
+        color: white;
+        opacity: 0.55;
+    }
+
+    .fa-instagram:hover {
+        background: #f09433;
+        background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+        color: white;
+    }
+}
