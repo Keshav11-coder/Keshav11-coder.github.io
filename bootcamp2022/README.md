@@ -20,7 +20,7 @@ This February there was one of those competitions, hack-O-mation, a 6 month prog
 
  well .. we needed an idea, half of our team wanted to make a farming drone .. like what?? A farming- drone?? .. while the other half wanted to make A surveillance drone, of course I was on the surveillance drone side because I like spying on people for no reason, aaand in the end we decided on the surveillance drone .. the full story is in another document, but you wont get that document. (in a friendly way)
 
-Ok so finally we got to the naming of our drone, we named it .. 
+Ok so finally we got to the naming of our drone, we named it ..
 
 ## SkyCam
 ##### Your Eye In The Sky
