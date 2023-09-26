@@ -1,0 +1,47 @@
+body {
+    background-color: #fafafa;
+    font-family: sans-serif;
+    color: #333;
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    width: 2px;
+    margin: 0px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+a {
+    color: #D72;
+}
+
+
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
+    background-color: #EFECEA;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+    background-color: transparent;
+}
+
+footer {
+    text-align: center;
+    background-color: #EFECEA;
+    padding: 0px;
+    color: #666
+}
