@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="jQuery_instruments/_examples_data/prism/prism.css" />
+    <!-- This page style -->
+    <link rel="stylesheet" type="text/css" href="jQuery_instruments/_examples_data/style.css" />
+    <!-- Flight Indicators library styles -->
+    <link rel="stylesheet" type="text/css" href="jQuery_instruments/css/flightindicators.css" />
+
+    <title>SkyGuage-01</title>
+</head>
+
+<body id="body" style="overflow-y :none; margin:0; padding:0;">
+                <span id="first_attitude"></span>
+
+
+    <script src="./jQuery_instruments/_examples_data/prism/prism.js"></script>
+    <script src="./jQuery_instruments/js/jquery.flightindicators.js"></script>
+
+    <!-- Let start our scripts-->
+    <script type="text/javascript">
+        // First static example
+        var first_attitude = $.flightIndicator('#first_attitude', 'attitude', { size: 170, roll: 8, pitch: 3, showBox: true });
+        var side_panel_sizes = 100;
+        // Dynamic examples
+        var attitude = $.flightIndicator('#attitude', 'attitude', { roll: 50, pitch: -20, size: side_panel_sizes, showBox: true });
+        var heading = $.flightIndicator('#heading', 'heading', { heading: 180, showBox: true, size: 170 });
+        var variometer = $.flightIndicator('#variometer', 'variometer', { vario: -5, showBox: true, size: side_panel_sizes });
+        var airspeed = $.flightIndicator('#airspeed', 'airspeed', { showBox: false, size: side_panel_sizes });
+        var altimeter = $.flightIndicator('#altimeter', 'altimeter', { size: side_panel_sizes });
+        var turn_coordinator = $.flightIndicator('#turn_coordinator', 'turn_coordinator', { turn: 0 });
+
+        // Update at 20Hz
+        var increment = 0;
+        setInterval(function () {
+            // Airspeed update
+            airspeed.setAirSpeed(80 + 80 * Math.sin(increment / 10));
+
+            // Attitude update
+            first_attitude.setRoll(30 * Math.sin(increment / 10));
+            first_attitude.setPitch(50 * Math.sin(increment / 20));
+
+            // Altimeter update
+            altimeter.setAltitude(10 * increment);
+            altimeter.setPressure(1000 + 3 * Math.sin(increment / 50));
+            increment++;
+
+            // TC update - note that the TC appears opposite the angle of the attitude indicator, as it mirrors the actual wing up/down position
+            turn_coordinator.setTurn((30 * Math.sin(increment / 10)) * -1);
+
+            // Heading update
+            heading.setHeading(increment);
+
+            // Vario update
+            variometer.setVario(2 * Math.sin(increment / 10));
+        }, 50);
+    </script>
+</body>
+
+</html>
